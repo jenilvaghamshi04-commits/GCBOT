@@ -1,0 +1,9 @@
+services:
+  guardian:
+    build: .
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - guardian-data:/app/data
+volumes:
+  guardian-data:

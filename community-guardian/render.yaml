@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: community-guardian-bot
+    runtime: python
+    plan: 0.5c-512mb
+    numInstances: 1
+    rootDir: community-guardian
+    buildCommand: python -m unittest -q
+    startCommand: python -u bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: DB_PATH
+        value: /var/data/guardian.sqlite3
+    disk:
+      name: guardian-data
+      mountPath: /var/data
+      sizeGB: 1
